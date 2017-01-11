@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             if (!t.isEmpty() && t != null) {
                 flag++;
                 button.setText("Stop");
+                button.setContentDescription("Stop");
 
                 ContentValues values = new ContentValues();
                 values.put(FeedReaderDbHelper.KEY_LOCATION,targetLocation);
@@ -177,8 +178,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 Uri uri = getContentResolver().insert(
                         ContentProvider.CONTENT_URI, values);
 
-                Toast.makeText(getBaseContext(),
-                        uri.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(),
+                  //      uri.toString(), Toast.LENGTH_LONG).show();
                 startLocationUpdates();
                 try {
                     addresses = geocoder.getFromLocationName(t, 1);
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     distance = currentLoc.distanceTo(targetLoc);
 
                     //Toast.makeText(MainActivity.this, "Lat:"+targetLat+",Long:"+targetLong, Toast.LENGTH_LONG).show();
-                    Toast.makeText(MainActivity.this, "Distance:" + distance, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.this, "Distance:" + distance, Toast.LENGTH_LONG).show();
 
                     if (distance <= 1000) {
                         NotificationCompat.Builder mBuilder =
@@ -212,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         stopLocationUpdates();
                         flag = 0;
                         button.setText("Start");
+                        button.setContentDescription("Start");
                     }
                 }
             } else
@@ -390,6 +392,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 stopLocationUpdates();
                 flag = 0;
                 button.setText("Start");
+                button.setContentDescription("Start");
             }
         } else
             Toast.makeText(this, "No Location found", Toast.LENGTH_SHORT).show();

@@ -3,6 +3,7 @@ package com.example.burhan.gpstracker;
 
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,7 +50,8 @@ public class History extends AppCompatActivity {
         String URL = "content://com.example.burhan.gpstracker.database/history";
 
         Uri uri = Uri.parse(URL);
-        Cursor c = managedQuery(uri, null, null, null, "id");
+        CursorLoader cl = new CursorLoader(this,uri, null, null, null, "id");
+        Cursor c = cl.loadInBackground();
 
         if (c.moveToFirst()) {
             do{
